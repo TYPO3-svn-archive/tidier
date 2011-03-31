@@ -12,10 +12,10 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Check HTML with Tidy',
-	'description' => 'Check the HTML rendered code for errors',
+	'description' => 'Check the HTML rendered code for errors (syntax and accessability)',
 	'category' => 'be',
 	'author' => 'Reto Zahner, Kilian Hann, Daniel Huf',
-	'author_email' => 'reto.zahner@newmedia.ch, kilian.hann@gmx.de, dhuf@cross-systems.com',
+	'author_email' => 'reto.zahner@newmedia.ch, kilian.hann@gmail.com, dhuf@cross-systems.com',
 	'shy' => '',
 	'dependencies' => 'crawler',
 	'conflicts' => '',
