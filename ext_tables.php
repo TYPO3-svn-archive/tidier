@@ -12,7 +12,6 @@ $tempColumns = array (
 	),
 );
 
-
 t3lib_div::loadTCA('pages');
 t3lib_extMgm::addTCAcolumns('pages',$tempColumns,1);
 t3lib_extMgm::addToAllTCAtypes('pages','tx_tidier_tidy_errors;;;;1-1-1');
