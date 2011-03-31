@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'tidier'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pages.tx_tidier_tidy_errors">Tidy errors</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="pages.tx_tidier_tidy_errors">Erreures Tidy</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="pages.tx_tidier_tidy_errors">Tidy Fehler</label>
+		</languageKey>
+	</data>
+</T3locallang>
