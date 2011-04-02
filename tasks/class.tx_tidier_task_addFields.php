@@ -46,7 +46,6 @@ class tx_tidier_task_addFields implements tx_scheduler_AdditionalFieldProvider {
 
         // Write the code for the field
         $fieldID = 'tidy_selectedBEUsers';
-        //$fieldCode = '<input type="text" name="tx_scheduler['. $fieldID .']" id="' . $fieldID . '" value="' . $taskInfo['tidy_email_to'] . '" size="30" />';
         $fieldOptions = $this->getBEUsersOptions($taskInfo['tidy_selectedBEUsers']);
         $fieldHtml =
 			'<select name="tx_scheduler['. $fieldID .'][]" id="' . $fieldId . '" class="wide" size="10" multiple="multiple">' .
@@ -65,7 +64,6 @@ class tx_tidier_task_addFields implements tx_scheduler_AdditionalFieldProvider {
 		$submittedData['tidy_domain'] = trim($submittedData['tidy_domain']);
 		$submittedData['tidy_pid'] = trim($submittedData['tidy_pid']);
 		$submittedData['tidy_selectedBEUsers'] = $submittedData['tidy_selectedBEUsers'];
-        //$submittedData['tidy_email_to'] = trim($submittedData['tidy_email_to']);
         return true;
     }
 
