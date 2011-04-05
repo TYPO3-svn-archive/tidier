@@ -7,12 +7,18 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="pages.tx_tidier_tidy_errors">Tidy errors</label>
+			<label index="scheduler.tidier.domain">Domain to tidy</label>
+			<label index="scheduler.tidier.domain.invalid">Please provide a baseUrl to test from</label>
+			<label index="scheduler.tidier.page">Starting page to tidy</label>
+			<label index="scheduler.tidier.page.invalid">Please provide a page id to start from</label>
+			<label index="scheduler.tidier.depth.invalid">Invalid depth given</label>
+			<label index="scheduler.tidier.beusers">Backend users to notify via email</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="pages.tx_tidier_tidy_errors">Erreures Tidy</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="pages.tx_tidier_tidy_errors">Tidy Fehler</label>
+			<label index="pages.tx_tidier_tidy_errors">Bitte geben Sie einen Startpunkt an</label>
 		</languageKey>
 	</data>
 </T3locallang>

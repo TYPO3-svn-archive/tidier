@@ -1,5 +1,5 @@
-# cat=basic/enable; type=string; label=Path to tidy (###PATH_TEMP### will be replaced with path to typo3temp, ###FILE### will be replaced by temp filename)
-tidyCommand = /usr/bin/tidy -i --quiet true --tidy-mark true -wrap 0 -raw -f ###PATH_TEMP###/###FILE###
+# cat=basic/enable; type=string; label=Path to tidy (###TEMP_FILE### will be replaced by temp filename)
+tidyCommand = /usr/bin/tidy --quiet true -wrap 0 -raw -access ###TIDY_ACCESS### -f ###TEMP_RESULT### ###TEMP_FILE###
 
 # cat=basic/enable; type=int; label=Accessibility level (-access parameter of tidy)
 tidyAccess = 3
