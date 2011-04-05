@@ -17,5 +17,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_tidier_task'
 );
 
 // add extension configuration
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
+$_EXTCONF = unserialize($_EXTCONF);
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['tidyCommand'] = $_EXTCONF['tidyCommand'];
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['tidyAccess'] = $_EXTCONF['tidyAccess'];
 ?>

@@ -46,8 +46,7 @@ class tx_tidier_task extends tx_scheduler_Task {
 		// preload error_code
 		$this->init();
 		// execute the command on all pages selected
-		$pids = $this->extGetTreeList($this->getPage(), $this->getDepth(), 0, "(fe_group=0 OR fe_group='') and hidden < 1");
-		t3lib_div::devLog($pids,12345);
+		$pids = $this->extGetTreeList($this->getPage(), $this->getDepth(), 0, "(fe_group=0 OR fe_group='') and hidden < 1") . '-1';
 		$pages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*','pages', 'uid in('.$pids.')');
 		if(count($pages) > 0){
 			foreach($pages as $page){
@@ -93,6 +92,9 @@ class tx_tidier_task extends tx_scheduler_Task {
 		
 		// exec tidy
 		exec($cmd);
+		
+		// parse tidy 
+		$this->parseTidy($page);
 		// remove html file
 		@unlink($this->tempFilename($page['uid'], 'file'));
 		
@@ -101,23 +103,26 @@ class tx_tidier_task extends tx_scheduler_Task {
 	
 	private function parseTidy($page){
 		$tstamp = time();
-		
 		$contents = @file_get_contents($this->tempFilename($page['uid'], 'result'));
 		$lines = explode("\n",$contents);
 		foreach($lines as $line){
-			$this->parseTidyReport($page,$line);
+			$this->parseTidyReport($page,$line, $tstamp);
 		}
+		// remove result file
+		@unlink($this->tempFilename($page['uid'], 'result'));
 	}
 	
-	private function parseTidyReport($page, $line){
+	private function parseTidyReport($page, $line, $tstamp){
 		$match = '/(line)\s(\d+)\s(column)\s(\d+)\s-\s(Access):\s\[([0-9\.]+)\]/';
 		preg_match($match,$line,$matches);
+		
+		if(intval($this->errorCodes[$matches[6]]) < 1) return;
 		$report = array(
 			'tstamp'=> $tstamp,
 			'error_pid'=> $page['uid'],
 			'error_line'=> $matches[2],
 			'error_column'=> $matches[4],
-			'error_code_uid' => $this->error_code[$matches[6]],
+			'error_code_uid' => $this->errorCodes[$matches[6]],
 		);
 		$GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_tidier_error',$report);
 	}
@@ -132,9 +137,9 @@ class tx_tidier_task extends tx_scheduler_Task {
 	private function init(){
 		$this->conf = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tidier'];
 		// cache all tidy results
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,error_code','tx_tidier_errorcode');
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,error_code','tx_tidier_errorcode',1);
 		while(list($uid,$error_code) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res)){
-			$this->error_codes[$error_code] = $uid;
+			$this->errorCodes[$error_code] = $uid;
 		}
 	}
 	

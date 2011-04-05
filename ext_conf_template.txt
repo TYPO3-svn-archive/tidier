@@ -1,5 +1,5 @@
 # cat=basic/enable; type=string; label=Path to tidy (###TEMP_FILE### will be replaced by temp filename)
-tidyCommand = /usr/bin/tidy --quiet true -wrap 0 -raw -access ###TIDY_ACCESS### -f ###TEMP_RESULT### ###TEMP_FILE###
+tidyCommand = /usr/bin/tidy -wrap 0 -raw -e -access ###TIDY_ACCESS### -f ###TEMP_RESULT### ###TEMP_FILE###
 
 # cat=basic/enable; type=int; label=Accessibility level (-access parameter of tidy)
 tidyAccess = 3
